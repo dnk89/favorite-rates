@@ -21,6 +21,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\FavoriteRates.UsersService.Application\FavoriteRates.UsersService.Application.csproj" />
+      <ProjectReference Include="..\FavoriteRates.UsersService.Infrastructure\FavoriteRates.UsersService.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

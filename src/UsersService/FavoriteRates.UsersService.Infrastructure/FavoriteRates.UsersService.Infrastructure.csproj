@@ -6,4 +6,16 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Persistence\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\FavoriteRates.UsersService.Application\FavoriteRates.UsersService.Application.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Isopoh.Cryptography.Argon2" Version="2.0.0" />
+    </ItemGroup>
+
 </Project>
