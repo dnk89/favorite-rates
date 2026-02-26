@@ -11,7 +11,7 @@ public sealed class RegisterUserCommandHandler(IValidator<RegisterUserCommand> v
         var validation = await validator.ValidateAsync(request, cancellationToken);
         if (!validation.IsValid)
         {
-            var error = string.Join("; ", validation.Errors.Select(x => x.ErrorMessage));
+            var error = validation.Errors.FirstOrDefault()?.ErrorMessage ?? "Validation failed.";
             return Result<UserDto>.Failure(error);
         }
         
