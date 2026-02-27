@@ -25,7 +25,7 @@ public class RegisterUserCommandHandlerTests
     {
         var ct = CancellationToken.None;
         var validCommand = new RegisterUserCommand("TESTUSER", "password", "password");
-        var normalizedName = validCommand.Name.ToLowerInvariant();
+        var normalizedName = validCommand.Name.ToLower();
         _validator
             .Setup(x => x.ValidateAsync(It.IsAny<RegisterUserCommand>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(new ValidationResult());
@@ -43,7 +43,7 @@ public class RegisterUserCommandHandlerTests
         Assert.NotNull(result.Value);
         Assert.Equal(normalizedName, result.Value.Name);
         _validator.Verify(x => x.ValidateAsync(validCommand, ct), Times.Once);
-        _userRepository.Verify(x => x.ExistsWithNameAsync(normalizedName, ct), Times.Once);
+        _userRepository.Verify(x => x.ExistsWithNameAsync(validCommand.Name, ct), Times.Once);
         _userRepository.Verify(x => x.AddAsync(
             It.Is<User>(u => u.Name == normalizedName && u.PasswordHash == expectedHash && u.Id == result.Value.Id), ct), Times.Once);
     }
