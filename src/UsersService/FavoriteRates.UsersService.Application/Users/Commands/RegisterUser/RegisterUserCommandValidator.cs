@@ -1,3 +1,4 @@
+using FavoriteRates.UsersService.Domain.Entities;
 using FluentValidation;
 
 namespace FavoriteRates.UsersService.Application.Users.Commands.RegisterUser;
@@ -8,17 +9,16 @@ public class RegisterUserCommandValidator : AbstractValidator<RegisterUserComman
     {
         RuleFor(x => x.Name)
             .NotEmpty().WithMessage("Name is required.")
-            .MinimumLength(3).WithMessage("Name must be at least 3 characters long.");
+            .MinimumLength(User.MinNameLength).WithMessage($"Name must be at least {User.MinNameLength} characters long.")
+            .MaximumLength(User.MaxNameLength).WithMessage($"Name must be at most {User.MaxNameLength} characters long.");
         
         RuleFor(x => x.Password1)
             .NotEmpty().WithMessage("Password1 is required.")
-            .MinimumLength(8).WithMessage("Password1 must be at least 8 characters long.");
+            .MinimumLength(User.MinPasswordLength).WithMessage($"Password1 must be at least {User.MinPasswordLength} characters long.");
 
         RuleFor(x => x.Password2)
             .NotEmpty().WithMessage("Password2 is required.")
-            .MinimumLength(8).WithMessage("Password2 must be at least 8 characters long.")
-            .Equal(x => x.Password1).WithMessage(
-                "Passwords must match."
-            );
+            .MinimumLength(User.MinPasswordLength).WithMessage($"Password2 must be at least {User.MinPasswordLength} characters long.")
+            .Equal(x => x.Password1).WithMessage("Passwords must match.");
     }
 }

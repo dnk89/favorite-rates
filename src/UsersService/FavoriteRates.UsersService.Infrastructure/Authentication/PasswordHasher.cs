@@ -5,5 +5,7 @@ namespace FavoriteRates.UsersService.Infrastructure.Authentication;
 
 public class PasswordHasher : IPasswordHasher
 {
+    public const int MaxHashStringLength = 255;
+    
     public string Hash(string password) => Argon2.Hash(password);
 }

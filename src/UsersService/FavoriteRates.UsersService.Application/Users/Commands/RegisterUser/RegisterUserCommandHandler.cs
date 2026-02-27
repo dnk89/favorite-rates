@@ -10,7 +10,7 @@ namespace FavoriteRates.UsersService.Application.Users.Commands.RegisterUser;
 public sealed class RegisterUserCommandHandler(
     IValidator<RegisterUserCommand> validator,
     IPasswordHasher passwordHasher,
-    IUserRepository userRepository)
+    IUsersRepository usersRepository)
 {
     public async Task<Result<UserDto>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
@@ -21,9 +21,7 @@ public sealed class RegisterUserCommandHandler(
             return Result<UserDto>.Failure(error);
         }
         
-        var normalizedName = request.Name.ToLowerInvariant();
-
-        if (await userRepository.ExistsWithNameAsync(normalizedName, cancellationToken))
+        if (await usersRepository.ExistsWithNameAsync(request.Name, cancellationToken))
         {
             return Result<UserDto>.Failure("User with this name already exists.");
         }
@@ -31,11 +29,11 @@ public sealed class RegisterUserCommandHandler(
         var user = new User
         {
             Id = Guid.NewGuid(),
-            Name = normalizedName,
+            Name = request.Name.ToLower(),
             PasswordHash = passwordHasher.Hash(request.Password1)
         };
         
-        await userRepository.AddAsync(user, cancellationToken);
+        await usersRepository.AddAsync(user, cancellationToken);
 
         return Result<UserDto>.Success(new UserDto(user.Id, user.Name));
     }

@@ -13,7 +13,7 @@ public class RegisterUserCommandHandlerTests
     private readonly RegisterUserCommandHandler _sut;
     private readonly Mock<IValidator<RegisterUserCommand>> _validator = new();
     private readonly Mock<IPasswordHasher> _passwordHasher = new();
-    private readonly Mock<IUserRepository> _userRepository = new();
+    private readonly Mock<IUsersRepository> _userRepository = new();
     
     public RegisterUserCommandHandlerTests()
     {

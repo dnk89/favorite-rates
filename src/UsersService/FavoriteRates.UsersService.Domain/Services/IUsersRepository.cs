@@ -2,7 +2,7 @@ using FavoriteRates.UsersService.Domain.Entities;
 
 namespace FavoriteRates.UsersService.Domain.Services;
 
-public interface IUserRepository
+public interface IUsersRepository
 {
     Task AddAsync(User user, CancellationToken cancellationToken);
     
