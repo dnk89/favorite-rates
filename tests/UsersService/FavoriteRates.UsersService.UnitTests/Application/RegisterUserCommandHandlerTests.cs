@@ -1,5 +1,5 @@
 using FavoriteRates.UsersService.Application.Abstractions;
-using FavoriteRates.UsersService.Application.Users.Commands.RegisterUser;
+using FavoriteRates.UsersService.Application.Users.Register;
 using FavoriteRates.UsersService.Domain.Entities;
 using FavoriteRates.UsersService.Domain.Services;
 using FluentValidation;

@@ -5,7 +5,7 @@ using FavoriteRates.UsersService.Domain.Entities;
 using FavoriteRates.UsersService.Domain.Services;
 using FluentValidation;
 
-namespace FavoriteRates.UsersService.Application.Users.Commands.RegisterUser;
+namespace FavoriteRates.UsersService.Application.Users.Register;
 
 public sealed class RegisterUserCommandHandler(
     IValidator<RegisterUserCommand> validator,

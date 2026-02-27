@@ -1,7 +1,7 @@
 using FavoriteRates.UsersService.Domain.Entities;
 using FluentValidation;
 
-namespace FavoriteRates.UsersService.Application.Users.Commands.RegisterUser;
+namespace FavoriteRates.UsersService.Application.Users.Register;
 
 public class RegisterUserCommandValidator : AbstractValidator<RegisterUserCommand>
 {
