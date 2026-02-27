@@ -1,0 +1,36 @@
+﻿services:
+  favoriterates.migrationsservice:
+    image: favoriterates.migrationsservice
+    build:
+      context: .
+      dockerfile: src/MigrationsService/FavoriteRates.MigrationsService/Dockerfile
+    environment:
+      - ConnectionStrings__UsersServiceConnection=Host=favoriterates.pg;Database=usersdb;Username=postgres;Password=postgres;
+    depends_on:
+      - favoriterates.pg
+
+  favoriterates.usersservice:
+    image: favoriterates.usersservice:latest
+    build:
+      context: .
+      dockerfile: src/UsersService/FavoriteRates.UsersService/Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=favoriterates.pg;Database=usersdb;Username=postgres;Password=postgres;
+    ports:
+      - "5145:8080"
+    depends_on:
+      favoriterates.migrationsservice: 
+        condition: service_completed_successfully
+      
+  favoriterates.pg:
+    image: postgres:18.1
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - favoriterates.pgvolume:/var/lib/postgresql
+        
+volumes:
+  favoriterates.pgvolume:

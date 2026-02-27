@@ -10,6 +10,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FavoriteRates.UsersService.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FavoriteRates.UsersService.Infrastructure", "src\UsersService\FavoriteRates.UsersService.Infrastructure\FavoriteRates.UsersService.Infrastructure.csproj", "{0994F148-9B2B-4BB3-AC42-6585F649B48F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FavoriteRates.MigrationsService", "src\MigrationsService\FavoriteRates.MigrationsService\FavoriteRates.MigrationsService.csproj", "{64A58EED-A0C4-4579-8900-BDF80D2B0BBE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{616D6969-1485-4832-9939-E1BF2DC952CF}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yaml = docker-compose.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +43,9 @@ Global
 		{0994F148-9B2B-4BB3-AC42-6585F649B48F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0994F148-9B2B-4BB3-AC42-6585F649B48F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0994F148-9B2B-4BB3-AC42-6585F649B48F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64A58EED-A0C4-4579-8900-BDF80D2B0BBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64A58EED-A0C4-4579-8900-BDF80D2B0BBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64A58EED-A0C4-4579-8900-BDF80D2B0BBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64A58EED-A0C4-4579-8900-BDF80D2B0BBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
