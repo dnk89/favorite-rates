@@ -2,11 +2,12 @@ using FavoriteRates.UsersService.Application.Abstractions;
 using FavoriteRates.UsersService.Application.Common;
 using FavoriteRates.UsersService.Application.Dtos;
 using FavoriteRates.UsersService.Domain.Services;
+using FluentValidation;
 
 namespace FavoriteRates.UsersService.Application.Users.Login;
 
 public class LoginUserCommandHandler(
-    LoginUserCommandValidator validator,
+    IValidator<LoginUserCommand> validator,
     IUsersRepository usersRepository,
     IPasswordHasher passwordHasher,
     IUserTokenProvider tokenProvider)
