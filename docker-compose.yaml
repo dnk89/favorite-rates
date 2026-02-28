@@ -25,6 +25,18 @@
     depends_on:
       favoriterates.migrationsservice: 
         condition: service_completed_successfully
+        
+  favoriterates.financeservice:
+    image: favoriterates.financeservice:latest
+    build:
+      context: .
+      dockerfile: src/FinanceService/FavoriteRates.FinanceService/Dockerfile
+    environment:
+      - Jwt__Secret=Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      - Jwt__Issuer=favoriterates.usersservice
+      - Jwt__Audience=favoriterates.financeservice
+    ports:
+      - "5146:8080"
       
   favoriterates.pg:
     image: postgres:18.1
