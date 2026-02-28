@@ -1,4 +1,5 @@
-using FavoriteRates.UsersService.Application.Users.Commands.RegisterUser;
+using FavoriteRates.UsersService.Application.Users.Login;
+using FavoriteRates.UsersService.Application.Users.Register;
 using FavoriteRates.UsersService.Extensions;
 
 namespace FavoriteRates.UsersService.Endpoints;
@@ -11,6 +12,10 @@ public static class UserEndpoints
 
         group.MapPost("/register",
             async (RegisterUserCommand command, RegisterUserCommandHandler commandHandler, CancellationToken ct) =>
+                (await commandHandler.Handle(command, ct)).ToProblemDetails());
+
+        group.MapPost("/login",
+            async (LoginUserCommand command, LoginUserCommandHandler  commandHandler, CancellationToken ct) => 
                 (await commandHandler.Handle(command, ct)).ToProblemDetails());
     }
 }

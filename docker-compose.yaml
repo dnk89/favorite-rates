@@ -16,6 +16,10 @@
       dockerfile: src/UsersService/FavoriteRates.UsersService/Dockerfile
     environment:
       - ConnectionStrings__DefaultConnection=Host=favoriterates.pg;Database=usersdb;Username=postgres;Password=postgres;
+      - Jwt__Secret=Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      - Jwt__ExpirationInMinutes=1
+      - Jwt__Issuer=favoriterates.usersservice
+      - Jwt__Audience=favoriterates.financeservice
     ports:
       - "5145:8080"
     depends_on:

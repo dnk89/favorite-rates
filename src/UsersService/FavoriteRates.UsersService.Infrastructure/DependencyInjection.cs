@@ -14,6 +14,10 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddSingleton<IPasswordHasher, PasswordHasher>();
+        services.AddSingleton<IUserTokenProvider, UserJwtTokenProvider>();
+        services.AddOptions<JwtOptions>()
+            .Bind(configuration.GetSection(JwtOptions.Key))
+            .ValidateDataAnnotations();
 
         services.AddScoped<UsersDbContext>(sp => new UsersDbContext(
             configuration.GetConnectionString("DefaultConnection")!,

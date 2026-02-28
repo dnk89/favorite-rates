@@ -17,4 +17,9 @@ public class UsersRepository(UsersDbContext db) : IUsersRepository
         return await db.Users
             .FirstOrDefaultAsync(u => name.ToLower() == u.Name.ToLower(), cancellationToken) is not null;
     }
+
+    public async Task<User?> FindByNameAsync(string name, CancellationToken cancellationToken)
+    {
+        return await db.Users.SingleOrDefaultAsync(u => name.ToLower() == u.Name.ToLower(), cancellationToken);
+    }
 }
