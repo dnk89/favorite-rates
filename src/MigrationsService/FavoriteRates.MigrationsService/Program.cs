@@ -1,4 +1,5 @@
-﻿using FavoriteRates.UsersService.Infrastructure.Persistence;
+﻿using FavoriteRates.FinanceService.Infrastructure.Persistence;
+using FavoriteRates.UsersService.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,10 +11,16 @@ var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddScoped<UsersDbContext>(sp => new UsersDbContext(
     builder.Configuration.GetConnectionString("UsersServiceConnection")!,
     sp.GetRequiredService<ILoggerFactory>()));
+builder.Services.AddScoped<FinanceDbContext>(sp => new FinanceDbContext(
+    builder.Configuration.GetConnectionString("FinanceServiceConnection")!,
+    sp.GetRequiredService<ILoggerFactory>()));
     
 var app = builder.Build();
 
 using var scope = app.Services.CreateScope();
 
-var db = scope.ServiceProvider.GetRequiredService<UsersDbContext>();
-await db.Database.MigrateAsync();
+var usersDb = scope.ServiceProvider.GetRequiredService<UsersDbContext>();
+var financeDb = scope.ServiceProvider.GetRequiredService<FinanceDbContext>();
+
+await usersDb.Database.MigrateAsync(); 
+await financeDb.Database.MigrateAsync();

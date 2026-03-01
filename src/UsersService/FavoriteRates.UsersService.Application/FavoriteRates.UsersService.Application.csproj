@@ -14,6 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Shared\FavoriteRates.SharedLibrary\FavoriteRates.SharedLibrary.csproj" />
       <ProjectReference Include="..\FavoriteRates.UsersService.Domain\FavoriteRates.UsersService.Domain.csproj" />
     </ItemGroup>
 

@@ -1,5 +1,5 @@
+using FavoriteRates.SharedLibrary.ResultPattern;
 using FavoriteRates.UsersService.Application.Abstractions;
-using FavoriteRates.UsersService.Application.Common;
 using FavoriteRates.UsersService.Application.Dtos;
 using FavoriteRates.UsersService.Domain.Services;
 using FluentValidation;

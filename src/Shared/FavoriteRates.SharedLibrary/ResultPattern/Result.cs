@@ -1,4 +1,4 @@
-namespace FavoriteRates.UsersService.Application.Common;
+namespace FavoriteRates.SharedLibrary.ResultPattern;
 
 public class Result<T>
 {

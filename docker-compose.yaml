@@ -6,6 +6,7 @@
       dockerfile: src/MigrationsService/FavoriteRates.MigrationsService/Dockerfile
     environment:
       - ConnectionStrings__UsersServiceConnection=Host=favoriterates.pg;Database=usersdb;Username=postgres;Password=postgres;
+      - ConnectionStrings__FinanceServiceConnection=Host=favoriterates.pg;Database=financedb;Username=postgres;Password=postgres;
     depends_on:
       - favoriterates.pg
 
@@ -32,11 +33,21 @@
       context: .
       dockerfile: src/FinanceService/FavoriteRates.FinanceService/Dockerfile
     environment:
+      - ConnectionStrings__DefaultConnection=Host=favoriterates.pg;Database=financedb;Username=postgres;Password=postgres;
       - Jwt__Secret=Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       - Jwt__Issuer=favoriterates.usersservice
       - Jwt__Audience=favoriterates.financeservice
+      - UpdateCurrencies__UpdateAt=16:30:00
+      - UpdateCurrencies__UpdateIfEmpty=true
+      - UpdateCurrencies__ClientBaseUrl=https://www.cbr.ru
+      - UpdateCurrencies__ClientPath=/scripts/XML_daily.asp
+      - UpdateCurrencies__ClientMaxRetryAttempts=3
+      - UpdateCurrencies__ClientRetryDelayInSeconds=2
     ports:
       - "5146:8080"
+    depends_on:
+      favoriterates.migrationsservice:
+        condition: service_completed_successfully
       
   favoriterates.pg:
     image: postgres:18.1

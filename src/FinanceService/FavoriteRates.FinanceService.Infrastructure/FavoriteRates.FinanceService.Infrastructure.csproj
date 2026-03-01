@@ -10,6 +10,14 @@
       <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.24" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+      <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="8.10.0" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
+      <PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\FavoriteRates.FinanceService.Application\FavoriteRates.FinanceService.Application.csproj" />
+      <ProjectReference Include="..\FavoriteRates.FinanceService.Domain\FavoriteRates.FinanceService.Domain.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
+using FavoriteRates.SharedLibrary.ResultPattern;
 using FavoriteRates.UsersService.Application.Users.Login;
 using FavoriteRates.UsersService.Application.Users.Register;
-using FavoriteRates.UsersService.Extensions;
 
 namespace FavoriteRates.UsersService.Endpoints;
 

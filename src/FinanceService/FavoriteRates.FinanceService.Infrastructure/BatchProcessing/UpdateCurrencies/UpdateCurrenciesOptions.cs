@@ -1,0 +1,18 @@
+using System.ComponentModel.DataAnnotations;
+
+namespace FavoriteRates.FinanceService.Infrastructure.BatchProcessing.UpdateCurrencies;
+
+public class UpdateCurrenciesOptions
+{
+    public const string Key = "UpdateCurrencies";
+    
+    public TimeSpan UpdateAt { get; set; } = TimeSpan.Parse("00:00:00");
+    
+    public bool UpdateIfEmpty { get; set; } = false;
+    
+    [Required]
+    public string ClientBaseUrl { get; set; } = string.Empty;
+    
+    [Required]
+    public string ClientPath { get; set; } = string.Empty;
+}

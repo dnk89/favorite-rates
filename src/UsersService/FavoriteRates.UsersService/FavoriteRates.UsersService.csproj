@@ -24,4 +24,8 @@
       <ProjectReference Include="..\FavoriteRates.UsersService.Infrastructure\FavoriteRates.UsersService.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Extensions\" />
+    </ItemGroup>
+
 </Project>

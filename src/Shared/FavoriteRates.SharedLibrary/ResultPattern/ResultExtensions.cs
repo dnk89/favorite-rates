@@ -1,6 +1,6 @@
-using FavoriteRates.UsersService.Application.Common;
+using Microsoft.AspNetCore.Http;
 
-namespace FavoriteRates.UsersService.Extensions;
+namespace FavoriteRates.SharedLibrary.ResultPattern;
 
 public static class ResultExtensions
 {

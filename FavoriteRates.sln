@@ -21,6 +21,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FavoriteRates.FinanceServic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FavoriteRates.FinanceService.Infrastructure", "src\FinanceService\FavoriteRates.FinanceService.Infrastructure\FavoriteRates.FinanceService.Infrastructure.csproj", "{2413F012-0112-4AC7-B0A2-40F639382747}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FavoriteRates.FinanceService.Domain", "src\FinanceService\FavoriteRates.FinanceService.Domain\FavoriteRates.FinanceService.Domain.csproj", "{CD07F53D-8308-4265-A106-EC09112E7366}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FavoriteRates.FinanceService.Application", "src\FinanceService\FavoriteRates.FinanceService.Application\FavoriteRates.FinanceService.Application.csproj", "{860C2DF2-DAD2-47E4-866E-3ED12BD81CA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FavoriteRates.SharedLibrary", "src\Shared\FavoriteRates.SharedLibrary\FavoriteRates.SharedLibrary.csproj", "{4A39A581-3634-433D-B1E3-D62D602E2E87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,5 +65,17 @@ Global
 		{2413F012-0112-4AC7-B0A2-40F639382747}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2413F012-0112-4AC7-B0A2-40F639382747}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2413F012-0112-4AC7-B0A2-40F639382747}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD07F53D-8308-4265-A106-EC09112E7366}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD07F53D-8308-4265-A106-EC09112E7366}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD07F53D-8308-4265-A106-EC09112E7366}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD07F53D-8308-4265-A106-EC09112E7366}.Release|Any CPU.Build.0 = Release|Any CPU
+		{860C2DF2-DAD2-47E4-866E-3ED12BD81CA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{860C2DF2-DAD2-47E4-866E-3ED12BD81CA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{860C2DF2-DAD2-47E4-866E-3ED12BD81CA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{860C2DF2-DAD2-47E4-866E-3ED12BD81CA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A39A581-3634-433D-B1E3-D62D602E2E87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A39A581-3634-433D-B1E3-D62D602E2E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A39A581-3634-433D-B1E3-D62D602E2E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A39A581-3634-433D-B1E3-D62D602E2E87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
