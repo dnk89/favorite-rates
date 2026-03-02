@@ -8,12 +8,18 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
-        services.Scan(scan => scan.FromAssembliesOf(typeof(SetFavoritesCommandHandler))
+        var assembly = typeof(SetFavoritesCommandHandler).Assembly;
+        
+        services.Scan(scan => scan.FromAssemblies(assembly)
             .AddClasses(classes => classes.Where(type => type.Name.EndsWith("CommandHandler")))
             .AsSelf()
             .WithTransientLifetime());
+        services.Scan(scan => scan.FromAssemblies(assembly)
+            .AddClasses(classes => classes.Where(type => type.Name.EndsWith("QueryHandler")))
+            .AsSelf()
+            .WithTransientLifetime());
         
-        services.AddValidatorsFromAssembly(typeof(SetFavoritesCommandValidator).Assembly);
+        services.AddValidatorsFromAssembly(assembly);
         
         return services;   
     }

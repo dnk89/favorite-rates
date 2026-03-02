@@ -9,4 +9,6 @@ public interface ICurrenciesRepository
     Task AddAsync(Currency currency, CancellationToken cancellationToken);
     
     Task UpdateAsync(Currency currency, CancellationToken cancellationToken);
+    
+    Task<IEnumerable<Currency>> GetFavoritesAsync(Guid userId, CancellationToken cancellationToken);
 }

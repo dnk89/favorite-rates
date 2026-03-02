@@ -22,4 +22,14 @@ public class CurrenciesRepository(FinanceDbContext dbContext) : ICurrenciesRepos
         dbContext.Currencies.Update(currency);
         await dbContext.SaveChangesAsync(cancellationToken);
     }
+    
+    public async Task<IEnumerable<Currency>> GetFavoritesAsync(Guid userId, CancellationToken cancellationToken)
+    {
+        return await dbContext.UserFavorites
+            .Include(uf => uf.Currency)
+            .AsNoTracking()
+            .Where(uf => uf.UserId == userId)
+            .Select(uf => uf.Currency)
+            .ToListAsync(cancellationToken);
+    }   
 }
