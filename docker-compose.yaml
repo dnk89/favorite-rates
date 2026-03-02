@@ -18,7 +18,7 @@
     environment:
       - ConnectionStrings__DefaultConnection=Host=favoriterates.pg;Database=usersdb;Username=postgres;Password=postgres;
       - Jwt__Secret=Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      - Jwt__ExpirationInMinutes=1
+      - Jwt__ExpirationInMinutes=10
       - Jwt__Issuer=favoriterates.usersservice
       - Jwt__Audience=favoriterates.financeservice
     ports:

@@ -1,9 +1,11 @@
+using FavoriteRates.FinanceService.Application;
 using FavoriteRates.FinanceService.Endpoints;
 using FavoriteRates.FinanceService.Extensions;
 using FavoriteRates.FinanceService.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
 builder.Services.AddSwaggerServices();

@@ -1,6 +1,7 @@
 using System.Text;
 using FavoriteRates.FinanceService.Application.Abstractions;
 using FavoriteRates.FinanceService.Domain.Services;
+using FavoriteRates.FinanceService.Infrastructure.Authentication;
 using FavoriteRates.FinanceService.Infrastructure.BatchProcessing.UpdateCurrencies;
 using FavoriteRates.FinanceService.Infrastructure.Persistence;
 using FavoriteRates.FinanceService.Infrastructure.Persistence.Repositories;
@@ -57,8 +58,11 @@ public static class DependencyInjection
         services.AddTransient<ICurrenciesRepository, CurrenciesRepository>();
         services.AddTransient<IUpdateCurrenciesService, UpdateCurrenciesService>();
         services.AddHostedService<UpdateCurrenciesWorker>();
+        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance); // rates from CBR use windows-1251 encoding
         
-        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+        services.AddTransient<IUserFavoritesRepository, UserFavoritesRepository>();
+        services.AddHttpContextAccessor();
+        services.AddScoped<IUserContext, UserContext>();
         
         return services;
     }

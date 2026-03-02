@@ -8,4 +8,9 @@ public static class ResultExtensions
     {
         return result.IsSuccess ? Results.Ok(result.Value) : Results.Problem(result.Error);
     }
+    
+    public static IResult ToProblemDetails(this Result result)
+    {
+        return result.IsSuccess ? Results.NoContent() : Results.Problem(result.Error);
+    }
 }

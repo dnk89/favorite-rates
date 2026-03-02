@@ -9,6 +9,7 @@ public class FinanceDbContext(string connectionString, ILoggerFactory loggerFact
     private const string Schema = "finance";
     
     public DbSet<Currency> Currencies => Set<Currency>();
+    public DbSet<UserFavorite> UserFavorites => Set<UserFavorite>();
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

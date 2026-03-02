@@ -1,3 +1,6 @@
+using FavoriteRates.FinanceService.Application.Currencies.SetFavorites;
+using FavoriteRates.SharedLibrary.ResultPattern;
+
 namespace FavoriteRates.FinanceService.Endpoints;
 
 public static class CurrenciesEndpoints
@@ -9,8 +12,8 @@ public static class CurrenciesEndpoints
 
         group.MapGet("/rates", async () => await Task.FromResult(new { }));
         
-        group.MapGet("/favorites", async () => await Task.FromResult(new { }));
-        
-        group.MapPost("/favorites", async () => await Task.FromResult(new { }));
+        group.MapPost("/favorites", 
+            async (SetFavoritesCommand command, SetFavoritesCommandHandler handler, CancellationToken cancellationToken) => 
+                (await handler.Handle(command, cancellationToken)).ToProblemDetails());
     }
 }
