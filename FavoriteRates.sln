@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FavoriteRates.FinanceServic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FavoriteRates.SharedLibrary", "src\Shared\FavoriteRates.SharedLibrary\FavoriteRates.SharedLibrary.csproj", "{4A39A581-3634-433D-B1E3-D62D602E2E87}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FavoriteRates.ApiGateway", "src\ApiGateway\FavoriteRates.ApiGateway\FavoriteRates.ApiGateway.csproj", "{9D3F9557-9D6E-4707-A2E8-AE193327ED67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,5 +79,9 @@ Global
 		{4A39A581-3634-433D-B1E3-D62D602E2E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A39A581-3634-433D-B1E3-D62D602E2E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A39A581-3634-433D-B1E3-D62D602E2E87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D3F9557-9D6E-4707-A2E8-AE193327ED67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D3F9557-9D6E-4707-A2E8-AE193327ED67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D3F9557-9D6E-4707-A2E8-AE193327ED67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D3F9557-9D6E-4707-A2E8-AE193327ED67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

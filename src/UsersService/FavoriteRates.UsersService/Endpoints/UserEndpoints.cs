@@ -6,7 +6,7 @@ namespace FavoriteRates.UsersService.Endpoints;
 
 public static class UserEndpoints
 {
-    public static void MapUserEndpoints(this IEndpointRouteBuilder app)
+    public static void MapUsersEndpoints(this IEndpointRouteBuilder app)
     {
         var group = app.MapGroup("/api/users");
 

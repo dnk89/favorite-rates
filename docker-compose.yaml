@@ -21,8 +21,6 @@
       - Jwt__ExpirationInMinutes=10
       - Jwt__Issuer=favoriterates.usersservice
       - Jwt__Audience=favoriterates.financeservice
-    ports:
-      - "5145:8080"
     depends_on:
       favoriterates.migrationsservice: 
         condition: service_completed_successfully
@@ -43,11 +41,23 @@
       - UpdateCurrencies__ClientPath=/scripts/XML_daily.asp
       - UpdateCurrencies__ClientMaxRetryAttempts=3
       - UpdateCurrencies__ClientRetryDelayInSeconds=2
-    ports:
-      - "5146:8080"
     depends_on:
       favoriterates.migrationsservice:
         condition: service_completed_successfully
+        
+  favoriterates.apigateway:
+    image: favoriterates.apigateway:latest
+    build:
+      context: .
+      dockerfile: src/ApiGateway/FavoriteRates.ApiGateway/Dockerfile
+    ports:
+      - "5147:8080"
+    environment:
+      - ReverseProxy__Clusters__users-cluster__Destinations__destination1__Address=http://favoriterates.usersservice:8080
+      - ReverseProxy__Clusters__finance-cluster__Destinations__destination1__Address=http://favoriterates.financeservice:8080
+    depends_on:
+      - favoriterates.usersservice
+      - favoriterates.financeservice
       
   favoriterates.pg:
     image: postgres:18.1

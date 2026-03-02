@@ -1,22 +1,20 @@
 using FavoriteRates.FinanceService.Application;
 using FavoriteRates.FinanceService.Endpoints;
-using FavoriteRates.FinanceService.Extensions;
 using FavoriteRates.FinanceService.Infrastructure;
+using FavoriteRates.SharedLibrary.Swagger;
+
+const string serviceName = "FinanceService";
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
-builder.Services.AddSwaggerServices();
+builder.Services.AddCustomSwagger(serviceName, bearerAuth: true);
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseCustomSwagger(serviceName, behindProxy: true);
 
 app.UseHttpsRedirection();
 
