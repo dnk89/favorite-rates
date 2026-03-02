@@ -11,6 +11,8 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0"/>
+        <PackageReference Include="Moq" Version="4.20.72" />
+        <PackageReference Include="FluentValidation" Version="12.1.1" />
         <PackageReference Include="xunit" Version="2.4.2"/>
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -20,6 +22,11 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\src\FinanceService\FavoriteRates.FinanceService.Application\FavoriteRates.FinanceService.Application.csproj" />
+      <ProjectReference Include="..\..\..\src\FinanceService\FavoriteRates.FinanceService.Domain\FavoriteRates.FinanceService.Domain.csproj" />
     </ItemGroup>
 
 </Project>
