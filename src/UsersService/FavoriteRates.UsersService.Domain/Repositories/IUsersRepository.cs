@@ -1,6 +1,6 @@
 using FavoriteRates.UsersService.Domain.Entities;
 
-namespace FavoriteRates.UsersService.Domain.Services;
+namespace FavoriteRates.UsersService.Domain.Repositories;
 
 public interface IUsersRepository
 {

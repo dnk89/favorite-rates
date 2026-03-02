@@ -1,8 +1,7 @@
 using FavoriteRates.SharedLibrary.ResultPattern;
 using FavoriteRates.UsersService.Application.Abstractions;
-using FavoriteRates.UsersService.Application.Dtos;
 using FavoriteRates.UsersService.Domain.Entities;
-using FavoriteRates.UsersService.Domain.Services;
+using FavoriteRates.UsersService.Domain.Repositories;
 using FluentValidation;
 
 namespace FavoriteRates.UsersService.Application.Users.Register;
@@ -12,18 +11,18 @@ public sealed class RegisterUserCommandHandler(
     IPasswordHasher passwordHasher,
     IUsersRepository usersRepository)
 {
-    public async Task<Result<UserDto>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+    public async Task<Result<RegisteredUserDto>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
         var validation = await validator.ValidateAsync(request, cancellationToken);
         if (!validation.IsValid)
         {
             var error = validation.Errors.FirstOrDefault()?.ErrorMessage ?? "Validation failed.";
-            return Result<UserDto>.Failure(error);
+            return Result<RegisteredUserDto>.Failure(error);
         }
         
         if (await usersRepository.ExistsWithNameAsync(request.Name, cancellationToken))
         {
-            return Result<UserDto>.Failure("User with this name already exists.");
+            return Result<RegisteredUserDto>.Failure("User with this name already exists.");
         }
 
         var user = new User
@@ -35,6 +34,6 @@ public sealed class RegisterUserCommandHandler(
         
         await usersRepository.AddAsync(user, cancellationToken);
 
-        return Result<UserDto>.Success(new UserDto(user.Id, user.Name));
+        return Result<RegisteredUserDto>.Success(new RegisteredUserDto(user.Id, user.Name));
     }
 }

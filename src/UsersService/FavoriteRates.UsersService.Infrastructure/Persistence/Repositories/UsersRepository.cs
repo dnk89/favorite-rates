@@ -1,5 +1,5 @@
 using FavoriteRates.UsersService.Domain.Entities;
-using FavoriteRates.UsersService.Domain.Services;
+using FavoriteRates.UsersService.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace FavoriteRates.UsersService.Infrastructure.Persistence.Repositories;

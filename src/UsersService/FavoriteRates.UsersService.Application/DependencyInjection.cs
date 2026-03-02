@@ -1,3 +1,4 @@
+using FavoriteRates.UsersService.Application.Users.Register;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -7,12 +8,14 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
-        services.Scan(scan => scan.FromAssembliesOf(typeof(ApplicationAssembly))
+        var assembly = typeof(RegisterUserCommandHandler).Assembly;
+        
+        services.Scan(scan => scan.FromAssemblies(assembly)
             .AddClasses(classes => classes.Where(type => type.Name.EndsWith("CommandHandler")))
             .AsSelf()
             .WithTransientLifetime());
         
-        services.AddValidatorsFromAssembly(typeof(ApplicationAssembly).Assembly);
+        services.AddValidatorsFromAssembly(assembly);
         
         return services;
     }   

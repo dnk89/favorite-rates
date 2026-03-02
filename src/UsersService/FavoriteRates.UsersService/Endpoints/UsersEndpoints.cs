@@ -4,7 +4,7 @@ using FavoriteRates.UsersService.Application.Users.Register;
 
 namespace FavoriteRates.UsersService.Endpoints;
 
-public static class UserEndpoints
+public static class UsersEndpoints
 {
     public static void MapUsersEndpoints(this IEndpointRouteBuilder app)
     {

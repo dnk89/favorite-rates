@@ -1,7 +1,7 @@
 using FavoriteRates.UsersService.Application.Abstractions;
 using FavoriteRates.UsersService.Application.Users.Login;
 using FavoriteRates.UsersService.Domain.Entities;
-using FavoriteRates.UsersService.Domain.Services;
+using FavoriteRates.UsersService.Domain.Repositories;
 using FluentValidation;
 using FluentValidation.Results;
 using Moq;

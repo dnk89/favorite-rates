@@ -1,5 +1,5 @@
 using FavoriteRates.UsersService.Application.Abstractions;
-using FavoriteRates.UsersService.Domain.Services;
+using FavoriteRates.UsersService.Domain.Repositories;
 using FavoriteRates.UsersService.Infrastructure.Authentication;
 using FavoriteRates.UsersService.Infrastructure.Persistence;
 using FavoriteRates.UsersService.Infrastructure.Persistence.Repositories;
