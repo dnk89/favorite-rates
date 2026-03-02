@@ -1,6 +1,4 @@
-using FavoriteRates.FinanceService.Application.Abstractions;
 using FavoriteRates.FinanceService.Application.Currencies.Update;
-using FavoriteRates.FinanceService.Infrastructure.Persistence;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -16,9 +14,9 @@ public class UpdateCurrenciesWorker(
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        if (options.Value.UpdateIfEmpty)
+        if (options.Value.UpdateOnStart)
         {
-            await RunAsync(stoppingToken, true);
+            await RunAsync(stoppingToken);
         }
         
         while (!stoppingToken.IsCancellationRequested)
@@ -42,17 +40,12 @@ public class UpdateCurrenciesWorker(
         return nextRunTime - now;
     }
     
-    private async Task RunAsync(CancellationToken stoppingToken, bool onlyEmpty = false)
+    private async Task RunAsync(CancellationToken stoppingToken)
     {
         try
         {
             using var scope = scopeFactory.CreateScope();
             var service = scope.ServiceProvider.GetRequiredService<IUpdateCurrenciesService>();
-            if (onlyEmpty)
-            {
-                var db = scope.ServiceProvider.GetRequiredService<FinanceDbContext>();
-                if (db.Currencies.Any()) return;
-            }
             await service.UpdateAsync(stoppingToken);
         }
         catch (Exception e)

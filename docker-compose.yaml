@@ -36,7 +36,7 @@
       - Jwt__Issuer=favoriterates.usersservice
       - Jwt__Audience=favoriterates.financeservice
       - UpdateCurrencies__UpdateAt=16:30:00
-      - UpdateCurrencies__UpdateIfEmpty=true
+      - UpdateCurrencies__UpdateOnStart=true
       - UpdateCurrencies__ClientBaseUrl=https://www.cbr.ru
       - UpdateCurrencies__ClientPath=/scripts/XML_daily.asp
       - UpdateCurrencies__ClientMaxRetryAttempts=3

@@ -9,7 +9,7 @@ public class UpdateCurrenciesOptions
     [Required]
     public TimeSpan UpdateAt { get; set; } = TimeSpan.Parse("00:00:00");
     
-    public bool UpdateIfEmpty { get; set; } = false;
+    public bool UpdateOnStart { get; set; } = false;
     
     [Required]
     public string ClientBaseUrl { get; set; } = string.Empty;
