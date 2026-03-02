@@ -23,8 +23,8 @@ public class UpdateCurrenciesWorker(
         
         while (!stoppingToken.IsCancellationRequested)
         {
-            var delay = CalculateDelay(options.Value.UpdateAt, timeProvider.GetLocalNow());
-            logger.LogInformation("Next update of CBR currencies will be in {delay}.", delay);
+            var delay = CalculateDelay(options.Value.UpdateAtUtc, timeProvider.GetUtcNow());
+            logger.LogInformation("Next update of CBR currencies (UTC) will be in {delay}.", delay);
             
             await Task.Delay(delay, stoppingToken);
             
@@ -32,9 +32,9 @@ public class UpdateCurrenciesWorker(
         }
     }
 
-    public static TimeSpan CalculateDelay(TimeSpan updateAt, DateTimeOffset now)
+    public static TimeSpan CalculateDelay(TimeSpan updateAtUtc, DateTimeOffset now)
     {
-        var nextRunTime = new DateTimeOffset(now.Year, now.Month, now.Day, 0, 0, 0, now.Offset).Add(updateAt);
+        var nextRunTime = new DateTimeOffset(now.Year, now.Month, now.Day, 0, 0, 0, now.Offset).Add(updateAtUtc);
         
         if (nextRunTime == now)
         {

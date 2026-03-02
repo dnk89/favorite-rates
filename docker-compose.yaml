@@ -35,7 +35,7 @@
       - Jwt__Secret=Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       - Jwt__Issuer=favoriterates.usersservice
       - Jwt__Audience=favoriterates.financeservice
-      - UpdateCurrencies__UpdateAt=16:30:00
+      - UpdateCurrencies__UpdateAtUtc=16:30:00
       - UpdateCurrencies__UpdateOnStart=true
       - UpdateCurrencies__ClientBaseUrl=https://www.cbr.ru
       - UpdateCurrencies__ClientPath=/scripts/XML_daily.asp
