@@ -1,4 +1,4 @@
-namespace FavoriteRates.FinanceService.Application.Abstractions;
+namespace FavoriteRates.FinanceService.Application.Currencies.Update;
 
 public interface IUpdateCurrenciesService
 {

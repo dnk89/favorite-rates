@@ -1,5 +1,5 @@
 using FavoriteRates.FinanceService.Domain.Entities;
-using FavoriteRates.FinanceService.Domain.Services;
+using FavoriteRates.FinanceService.Domain.Repositories;
 
 namespace FavoriteRates.FinanceService.Infrastructure.Persistence.Repositories;
 

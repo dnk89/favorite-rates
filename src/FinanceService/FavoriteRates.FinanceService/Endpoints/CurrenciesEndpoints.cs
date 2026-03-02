@@ -12,7 +12,7 @@ public static class CurrenciesEndpoints
         var group = app.MapGroup("/api/currencies")
             .RequireAuthorization();
 
-        group.MapGet("/rates", 
+        group.MapGet("/favorites/rates", 
             async ([FromServices] GetFavoritesRatesQueryHandler handler, CancellationToken cancellationToken) => 
                 (await handler.Handle(new GetFavoritesRatesQuery(), cancellationToken)).ToProblemDetails());
         

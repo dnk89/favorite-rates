@@ -6,6 +6,7 @@ public class UpdateCurrenciesOptions
 {
     public const string Key = "UpdateCurrencies";
     
+    [Required]
     public TimeSpan UpdateAt { get; set; } = TimeSpan.Parse("00:00:00");
     
     public bool UpdateIfEmpty { get; set; } = false;

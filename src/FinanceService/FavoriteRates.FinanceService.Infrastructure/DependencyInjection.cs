@@ -1,6 +1,7 @@
 using System.Text;
 using FavoriteRates.FinanceService.Application.Abstractions;
-using FavoriteRates.FinanceService.Domain.Services;
+using FavoriteRates.FinanceService.Application.Currencies.Update;
+using FavoriteRates.FinanceService.Domain.Repositories;
 using FavoriteRates.FinanceService.Infrastructure.Authentication;
 using FavoriteRates.FinanceService.Infrastructure.BatchProcessing.UpdateCurrencies;
 using FavoriteRates.FinanceService.Infrastructure.Persistence;
@@ -19,6 +20,19 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services,
         IConfiguration configuration)
     {
+        
+        return services
+            .AddJwtAuthentication(configuration)
+            .AddAuthorization()
+            .AddUpdateCurrenciesBatchService(configuration)
+            .AddPersistenceServices(configuration)
+            .AddHttpContextAccessor()
+            .AddScoped<IUserContext, UserContext>();
+    }
+
+    private static IServiceCollection AddJwtAuthentication(this IServiceCollection services,
+        IConfiguration configuration)
+    {
         services.AddAuthentication()
             .AddJwtBearer(o =>
             {
@@ -33,8 +47,23 @@ public static class DependencyInjection
                 };
             });
         
-        services.AddAuthorization();
+        return services;
+    }
+
+    private static IServiceCollection AddPersistenceServices(this IServiceCollection services,
+        IConfiguration configuration)
+    {
+        services.AddScoped<FinanceDbContext>(sp => new FinanceDbContext(
+            configuration.GetConnectionString("DefaultConnection")!,
+            sp.GetRequiredService<ILoggerFactory>()));
+        services.AddTransient<ICurrenciesRepository, CurrenciesRepository>();
+        services.AddTransient<IUserFavoritesRepository, UserFavoritesRepository>();
         
+        return services;
+    }
+
+    private static IServiceCollection AddUpdateCurrenciesBatchService(this IServiceCollection services, IConfiguration configuration)
+    {
         services.AddOptions<UpdateCurrenciesOptions>()
             .Bind(configuration.GetSection(UpdateCurrenciesOptions.Key))
             .ValidateDataAnnotations();
@@ -51,18 +80,10 @@ public static class DependencyInjection
             options.Retry.Delay = TimeSpan.FromSeconds(configuration.GetValue<int>($"{UpdateCurrenciesOptions.Key}:ClientRetryDelayInSeconds"));
             options.Retry.BackoffType = DelayBackoffType.Exponential;
         });
-
-        services.AddScoped<FinanceDbContext>(sp => new FinanceDbContext(
-            configuration.GetConnectionString("DefaultConnection")!,
-            sp.GetRequiredService<ILoggerFactory>()));
-        services.AddTransient<ICurrenciesRepository, CurrenciesRepository>();
+        
         services.AddTransient<IUpdateCurrenciesService, UpdateCurrenciesService>();
         services.AddHostedService<UpdateCurrenciesWorker>();
         Encoding.RegisterProvider(CodePagesEncodingProvider.Instance); // rates from CBR use windows-1251 encoding
-        
-        services.AddTransient<IUserFavoritesRepository, UserFavoritesRepository>();
-        services.AddHttpContextAccessor();
-        services.AddScoped<IUserContext, UserContext>();
         
         return services;
     }

@@ -1,6 +1,6 @@
 using FavoriteRates.FinanceService.Application.Abstractions;
 using FavoriteRates.FinanceService.Domain.Entities;
-using FavoriteRates.FinanceService.Domain.Services;
+using FavoriteRates.FinanceService.Domain.Repositories;
 using FavoriteRates.SharedLibrary.ResultPattern;
 using FluentValidation;
 

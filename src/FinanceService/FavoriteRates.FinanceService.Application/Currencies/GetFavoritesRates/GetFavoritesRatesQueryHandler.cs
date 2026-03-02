@@ -1,5 +1,5 @@
 using FavoriteRates.FinanceService.Application.Abstractions;
-using FavoriteRates.FinanceService.Domain.Services;
+using FavoriteRates.FinanceService.Domain.Repositories;
 using FavoriteRates.SharedLibrary.ResultPattern;
 
 namespace FavoriteRates.FinanceService.Application.Currencies.GetFavoritesRates;

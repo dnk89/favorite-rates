@@ -1,7 +1,8 @@
 using System.Xml.Serialization;
 using FavoriteRates.FinanceService.Application.Abstractions;
+using FavoriteRates.FinanceService.Application.Currencies.Update;
 using FavoriteRates.FinanceService.Domain.Entities;
-using FavoriteRates.FinanceService.Domain.Services;
+using FavoriteRates.FinanceService.Domain.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;

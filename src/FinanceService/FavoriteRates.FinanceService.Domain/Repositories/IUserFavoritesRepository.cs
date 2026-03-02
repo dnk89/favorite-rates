@@ -1,6 +1,6 @@
 using FavoriteRates.FinanceService.Domain.Entities;
 
-namespace FavoriteRates.FinanceService.Domain.Services;
+namespace FavoriteRates.FinanceService.Domain.Repositories;
 
 public interface IUserFavoritesRepository
 {

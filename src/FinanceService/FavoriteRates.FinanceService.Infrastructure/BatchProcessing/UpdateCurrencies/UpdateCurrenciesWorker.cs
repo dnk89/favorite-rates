@@ -1,4 +1,5 @@
 using FavoriteRates.FinanceService.Application.Abstractions;
+using FavoriteRates.FinanceService.Application.Currencies.Update;
 using FavoriteRates.FinanceService.Infrastructure.Persistence;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
