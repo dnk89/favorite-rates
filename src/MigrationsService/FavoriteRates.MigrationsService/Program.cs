@@ -22,5 +22,4 @@ using var scope = app.Services.CreateScope();
 var usersDb = scope.ServiceProvider.GetRequiredService<UsersDbContext>();
 var financeDb = scope.ServiceProvider.GetRequiredService<FinanceDbContext>();
 
-await usersDb.Database.MigrateAsync(); 
-await financeDb.Database.MigrateAsync();
+await Task.WhenAll(usersDb.Database.MigrateAsync(), financeDb.Database.MigrateAsync());
