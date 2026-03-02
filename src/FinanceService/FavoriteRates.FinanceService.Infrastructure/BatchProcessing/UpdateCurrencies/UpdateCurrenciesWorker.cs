@@ -12,6 +12,8 @@ public class UpdateCurrenciesWorker(
     IOptions<UpdateCurrenciesOptions> options,
     TimeProvider timeProvider) : BackgroundService
 {
+    public const int RetryDelayOnExactMatchSeconds = 5;
+
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         if (options.Value.UpdateOnStart)
@@ -30,9 +32,15 @@ public class UpdateCurrenciesWorker(
         }
     }
 
-    private static TimeSpan CalculateDelay(TimeSpan updateAt, DateTimeOffset now)
+    public static TimeSpan CalculateDelay(TimeSpan updateAt, DateTimeOffset now)
     {
-        var nextRunTime = now.Date.Add(updateAt);
+        var nextRunTime = new DateTimeOffset(now.Year, now.Month, now.Day, 0, 0, 0, now.Offset).Add(updateAt);
+        
+        if (nextRunTime == now)
+        {
+            return TimeSpan.FromSeconds(RetryDelayOnExactMatchSeconds);
+        }
+        
         if (nextRunTime < now)
         {
             nextRunTime = nextRunTime.AddDays(1);
