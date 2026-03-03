@@ -89,6 +89,62 @@ To run all unit tests across the solution:
 dotnet test
 ```
 
+## API Usage Examples
+
+Once the application is running (port 5147), you can use the following requests to interact with the system.
+
+### 1. Register a User
+Create a new user by providing a unique name and matching passwords.
+
+**Endpoint:** `POST /users-service/api/users/register`
+```bash
+curl -X POST http://localhost:5147/users-service/api/users/register \
+     -H "Content-Type: application/json" \
+     -d '{
+       "name": "testuser",
+       "password1": "SecurePassword123",
+       "password2": "SecurePassword123"
+     }'
+```
+
+### 2. Login and Get Token
+Authenticate to receive a JWT Bearer token for protected endpoints.
+
+**Endpoint:** `POST /users-service/api/users/login`
+```bash
+curl -X POST http://localhost:5147/users-service/api/users/login \
+     -H "Content-Type: application/json" \
+     -d '{
+       "name": "testuser",
+       "password": "SecurePassword123"
+     }'
+```
+*Save the `token` from the response.*
+
+### 3. Set Favorite Currencies
+Choose which currencies you want to track. Requires authentication.
+
+**Endpoint:** `POST /finance-service/api/currencies/favorites`
+```bash
+curl -X POST http://localhost:5147/finance-service/api/currencies/favorites \
+     -H "Authorization: Bearer YOUR_TOKEN_HERE" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "currencies": ["USD", "EUR", "CNY"]
+     }'
+```
+
+### 4. Get Favorite Currency Rates
+Retrieve current exchange rates for your favorite currencies. Requires authentication.
+
+**Endpoint:** `GET /finance-service/api/currencies/favorites/rates`
+```bash
+curl -X GET http://localhost:5147/finance-service/api/currencies/favorites/rates \
+     -H "Authorization: Bearer YOUR_TOKEN_HERE"
+```
+
+---
+
 ## API Features
 
 *   **User Management**: Registration and Login.
