@@ -1,3 +1,4 @@
+using FavoriteRates.SharedLibrary.Application;
 using FavoriteRates.SharedLibrary.ResultPattern;
 using FavoriteRates.UsersService.Application.Users.Login;
 using FavoriteRates.UsersService.Application.Users.Register;
@@ -11,11 +12,11 @@ public static class UsersEndpoints
         var group = app.MapGroup("/api/users");
 
         group.MapPost("/register",
-            async (RegisterUserCommand command, RegisterUserCommandHandler commandHandler, CancellationToken ct) =>
-                (await commandHandler.Handle(command, ct)).ToProblemDetails());
+            async (RegisterUserCommand command, IHandler<RegisterUserCommand, Result<RegisteredUserDto>> handler, CancellationToken ct) =>
+                (await handler.Handle(command, ct)).ToProblemDetails());
 
         group.MapPost("/login",
-            async (LoginUserCommand command, LoginUserCommandHandler  commandHandler, CancellationToken ct) => 
-                (await commandHandler.Handle(command, ct)).ToProblemDetails());
+            async (LoginUserCommand command, IHandler<LoginUserCommand, Result<UserTokenDto>> handler, CancellationToken ct) => 
+                (await handler.Handle(command, ct)).ToProblemDetails());
     }
 }

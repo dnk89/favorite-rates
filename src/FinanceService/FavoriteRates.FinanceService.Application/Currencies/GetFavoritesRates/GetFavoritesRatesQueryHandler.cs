@@ -1,12 +1,13 @@
 using FavoriteRates.FinanceService.Application.Abstractions;
 using FavoriteRates.FinanceService.Domain.Repositories;
+using FavoriteRates.SharedLibrary.Application;
 using FavoriteRates.SharedLibrary.ResultPattern;
 
 namespace FavoriteRates.FinanceService.Application.Currencies.GetFavoritesRates;
 
 public class GetFavoritesRatesQueryHandler(
     ICurrenciesRepository currenciesRepository,
-    IUserContext userContext)
+    IUserContext userContext) : IHandler<GetFavoritesRatesQuery, Result<IEnumerable<CurrencyRateDto>>>
 {
     public async Task<Result<IEnumerable<CurrencyRateDto>>> Handle(
         GetFavoritesRatesQuery query,

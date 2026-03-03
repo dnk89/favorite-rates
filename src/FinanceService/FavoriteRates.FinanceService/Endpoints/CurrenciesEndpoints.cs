@@ -1,5 +1,6 @@
 using FavoriteRates.FinanceService.Application.Currencies.GetFavoritesRates;
 using FavoriteRates.FinanceService.Application.Currencies.SetFavorites;
+using FavoriteRates.SharedLibrary.Application;
 using FavoriteRates.SharedLibrary.ResultPattern;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,11 +14,11 @@ public static class CurrenciesEndpoints
             .RequireAuthorization();
 
         group.MapGet("/favorites/rates", 
-            async ([FromServices] GetFavoritesRatesQueryHandler handler, CancellationToken cancellationToken) => 
+            async ([FromServices] IHandler<GetFavoritesRatesQuery, Result<IEnumerable<CurrencyRateDto>>> handler, CancellationToken cancellationToken) => 
                 (await handler.Handle(new GetFavoritesRatesQuery(), cancellationToken)).ToProblemDetails());
         
         group.MapPost("/favorites", 
-            async (SetFavoritesCommand command, SetFavoritesCommandHandler handler, CancellationToken cancellationToken) => 
+            async (SetFavoritesCommand command, IHandler<SetFavoritesCommand, Result> handler, CancellationToken cancellationToken) => 
                 (await handler.Handle(command, cancellationToken)).ToProblemDetails());
     }
 }

@@ -1,25 +1,17 @@
+using FavoriteRates.SharedLibrary.Application;
 using FavoriteRates.SharedLibrary.ResultPattern;
 using FavoriteRates.UsersService.Application.Abstractions;
 using FavoriteRates.UsersService.Domain.Repositories;
-using FluentValidation;
 
 namespace FavoriteRates.UsersService.Application.Users.Login;
 
 public class LoginUserCommandHandler(
-    IValidator<LoginUserCommand> validator,
     IUsersRepository usersRepository,
     IPasswordHasher passwordHasher,
-    IUserTokenProvider tokenProvider)
+    IUserTokenProvider tokenProvider) : IHandler<LoginUserCommand, Result<UserTokenDto>>
 {
     public async Task<Result<UserTokenDto>> Handle(LoginUserCommand command, CancellationToken cancellationToken)
     {
-        var validation = await validator.ValidateAsync(command, cancellationToken);
-        if (!validation.IsValid)
-        {
-            var error = validation.Errors.FirstOrDefault()?.ErrorMessage ?? "Validation failed.";
-            return Result<UserTokenDto>.Failure(error);       
-        }
-        
         var user = await usersRepository.FindByNameAsync(command.Name, cancellationToken);
         if (user is null)
         {
